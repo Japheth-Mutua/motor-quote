@@ -117,7 +117,7 @@ const TON=[['Above 0–3 tons',5500],['Above 3–8 tons',8000],['9–15 tons',10
 const PR=[.25,2500],PE=[.25,5000],CP=[.45,2500],CE=[.5,5000],PP=[.45,4500],FL1='Fleet PVT/EP rates are not stated in the guide: private rates used.';
 const bd=(r,m)=>[[1e15,r,m]];
 const C=[
-{n:'Motor Private (070)',k:'priv',g:'P',pg:'p3',cb:[[5e5,6,3e4],[999999.99,4,3e4],[2.5e6,3.5,3e4],[4999999.99,3,3e4],[1e15,2.5,3e4]],t:{f:7500},pv:PR,ep:PE,lou:1},
+{n:'Motor Private (070)',k:'priv',g:'P',pg:'p3',cb:[[5e5,6,3e4],[999999.99,4,3e4],[2.5e6,3.5,3e4],[4999999.99,3,3e4],[1e15,2.5,3e4]],t:{f:5000},pv:PR,ep:PE,lou:1},
 {n:'Private Fleet – Individual, 3+ units (070)',k:'priv',g:'P',pg:'p3',cb:bd(3.5,25000),t:{f:7000},pv:PR,ep:PE,lou:1,fl:[FL1]},
 {n:'Private Fleet – Corporate, 5+ units (070)',k:'priv',g:'P',pg:'p3',cb:bd(3.25,25000),t:{f:7000},pv:PR,ep:PE,lou:1,fl:[FL1]},
 {n:'Commercial – own goods only (080)',k:'com',g:'C',tp:20000,pg:'p3–4',cb:[[999999.99,6,35500],[1.5e6,5,35500],[3e6,4.5,67500],[1e15,4,120000]],t:{o:TON},pv:CP,ep:CE},
