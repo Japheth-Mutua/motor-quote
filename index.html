@@ -100,8 +100,8 @@ button{font:600 15px system-ui,sans-serif;padding:10px 16px;margin:6px 8px 6px 0
 <h2>Underwriting observations (internal)</h2><ul class="int" id="ob"></ul>
 <h2>Rating justification (internal)</h2><ul class="int" id="rj"></ul></div></div></div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+<script src="[LINKSHIELD PROTECTED] cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js "></script>
+<script src="[LINKSHIELD PROTECTED] cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js "></script>
 <script>
 const $=i=>document.getElementById(i),f=n=>{n=+n;return n%1?n.toLocaleString('en-US',{minimumFractionDigits:1,maximumFractionDigits:1}):n.toLocaleString('en-US')},r1=x=>Math.round((x+1e-9)*10)/10,num=s=>+String(s).replace(/[^\d.]/g,'')||0;
 const S=s=>s.split(',').map(Number);
@@ -117,7 +117,7 @@ const TON=[['Above 0–3 tons',5500],['Above 3–8 tons',8000],['9–15 tons',10
 const PR=[.25,2500],PE=[.25,5000],CP=[.45,2500],CE=[.5,5000],PP=[.45,4500],FL1='Fleet PVT/EP rates are not stated in the guide: private rates used.';
 const bd=(r,m)=>[[1e15,r,m]];
 const C=[
-{n:'Motor Private (070)',k:'priv',g:'P',pg:'p3',cb:[[5e5,6,3e4],[999999.99,4,3e4],[2.5e6,3.5,3e4],[4999999.99,3,3e4],[1e15,2.5,3e4]],t:{f:7500},pv:PR,ep:PE,lou:1},
+{n:'Motor Private (070)',k:'priv',g:'P',pg:'p3',cb:[[5e5,6,3e4],[999999.99,4,3e4],[2.5e6,3.5,3e4],[4999999.99,3,3e4],[1e15,2.5,3e4]],t:{f:5000,fp:7500},pv:PR,ep:PE,lou:1,fl:['Motor Private TPO premium is KES 5,000. Probox, Sienta and Succeed models: TPO premium KES 7,500, total payable KES 7,573.8 (including levies and stamp duty).']},
 {n:'Private Fleet – Individual, 3+ units (070)',k:'priv',g:'P',pg:'p3',cb:bd(3.5,25000),t:{f:7000},pv:PR,ep:PE,lou:1,fl:[FL1]},
 {n:'Private Fleet – Corporate, 5+ units (070)',k:'priv',g:'P',pg:'p3',cb:bd(3.25,25000),t:{f:7000},pv:PR,ep:PE,lou:1,fl:[FL1]},
 {n:'Commercial – own goods only (080)',k:'com',g:'C',tp:20000,pg:'p3–4',cb:[[999999.99,6,35500],[1.5e6,5,35500],[3e6,4.5,67500],[1e15,4,120000]],t:{o:TON},pv:CP,ep:CE},
@@ -141,7 +141,7 @@ const C=[
 {n:'PSV Matatu/Bus',k:'psv',g:'M',pax:1,sch:1,pg:'p7, p11, p15–16',cb:bd(4,4e4),t:{s:1},pv:PP,ep:CE,fl:['Seats of 35 and above are treated as a bus: Bus excesses and limits, TPO Excess Protector KES 1,200 per month. Comprehensive uses the matatu rate (4%, min 40,000) plus the schedule premium, with Bus excesses and limits.']},
 {n:'Tuktuk – PSV (max 6 passengers)',k:'psv',pax:1,mx:6,msi:0,pc:500,pt:500,pg:'p7',cb:bd(4,2e4),t:{f:3000},fl:['Maximum 2 instalments.']},
 {n:'Tuktuk – Commercial',k:'com',nopll:1,msi:0,pg:'p7',cb:bd(4,2e4),t:{f:5000},fl:['Maximum 2 instalments. No PLL on the policy.']}];
-C.forEach(c=>{if(!c.g){c.g=c.k=='psv'?'X':'C';c.ag=1}});
+C.forEach(c=>{if(!c.g){c.g=c.k=='psv'?'X':'C';[LINKSHIELD PROTECTED] c.ag =1}});
 const T1='Theft - With anti-theft device ',NA='~Without anti-theft device ',WT='~With tracking device ';
 const G={
 P:{e:['Own Damage/Partial Theft -2.5% of sum insured min. Shs. 15,000',T1+'10% of sum insured min. Shs. 20,000/=',NA+'20% of sum insured Min Shs. 20,000/=',WT+'5% of sum insured Min Shs. 20,000/=','TPPD - Shs. 10,000','Young/Novice Drivers - Shs. 7,500/= (additional)'],
@@ -178,7 +178,7 @@ function calc(){const c=C[$('cls').value];if(!c)return{er:['Select a class of in
   const mn=ov?Math.max(5e5,c.msi||0):(c.msi??5e5);if(!si)er.push('Enter the vehicle value');else if(si<mn)er.push('Minimum sum insured is KES '+f(mn)+' for this class');
   if(age>20)er.push('Comprehensive cover is declined for vehicles above 20 years');else if(age>15&&c.k=='psv')er.push('No comprehensive cover for PSV vehicles above 15 years');else if(age>15&&c.hy)er.push('Hybrid age limit at entry is 15 years: refer to Underwriting')}
  else if(!c.t)er.push('No Third Party Only rate in the guide for this class');
- if(c.pax){if(!px)er.push('Enter the number of passengers / seats');else if(c.mx&&px>c.mx)er.push('Maximum '+c.mx+' passengers for this class');else if((c.sch&&comp||c.t&&c.t.s&&!comp)&&(px<7||px>51))er.push('Seats must be between 7 and 51 (PSV schedule range)')}
+ if(c.pax){if(!px)er.push('Enter the number of passengers / seats');else if([LINKSHIELD PROTECTED] c.mx &&px>[LINKSHIELD PROTECTED] c.mx )er.push('Maximum '+[LINKSHIELD PROTECTED] c.mx +' passengers for this class');else if((c.sch&&comp||c.t&&c.t.s&&!comp)&&(px<7||px>51))er.push('Seats must be between 7 and 51 (PSV schedule range)')}
  if(!comp&&c.t&&c.t.b&&px&&!c.t.b.find(x=>px<=x[0]))er.push('Above 41 passengers is not rated for TPO');
  if(er.length)return{er};
  const P=(l,r,a,g,w)=>{a=r1(a);(l.startsWith('COMESA')?Y:X).push({i:l,r,p:a,g});W.push(l+': '+w+' = KES '+f(a))};
@@ -192,11 +192,11 @@ function calc(){const c=C[$('cls').value];if(!c)return{er:['Select a class of in
   ex('ep',e.ep,'Excess Protector (Own Damage Excess)');if($('tep').checked&&c.sch){const m=bus?1200:900;P('Excess Protector (TPPD Excess)','',m*12,0,m+' × 12 months')}ex('pvt',e.pv,'Political Violence & Terrorism (PVT)');
   if($('lou').checked&&c.k=='priv'){if(si>1e6){P('Loss of use (courtesy car)','',5000,0,'flat');LOU='Loss of use: KES 3,000 per day for 15 days, first 3 days excluded, maximum KES 45,000'}else F.push('Loss of use applies only to private vehicles above KES 1,000,000: not charged.')}
  }else{const t=c.t;let tp,lab='';
-  if(t.f!=null)tp=t.f;else if(t.o){const o=t.o[+$('cat').value||0];tp=o[1];lab=o[0]}else if(t.b)tp=t.b.find(x=>px<=x[0])[1];
+  if(t.f!=null)tp=(t.fp!=null&&(/probox|sienta|succeed/i.test($('mk').value)||$('pbx').checked))?t.fp:t.f;else if(t.o){const o=t.o[+$('cat').value||0];tp=o[1];lab=o[0]}else if(t.b)tp=t.b.find(x=>px<=x[0])[1];
   else{const i=+$('plan').value||0,pl=PL[i];gross=true;const u=SCH[pl[1]][px-7];tp=u*pl[2];lab=pl[0];rem.push('Period / payment: '+(pl[2]>1?pl[0]+' of KES '+f(u):pl[0]+': KES '+f(u)));W.push('PSV schedule '+pl[0]+', '+px+' seats: '+(pl[2]>1?pl[2]+' × '+f(u)+' = ':'')+'KES '+f(tp)+' (gross)');
    if($('ep').checked){const m=bus?1200:900,mo=i<=1?1:12;P('Excess Protector (TPPD Excess)','',m*mo,0,m+' × '+mo+' months');F.push('Matatu/Bus TPO Excess Protector: 12 months charged for annual and instalment policies, 1 month for 14-day and 1-month policies (assumption).')}}
   tp=r1(tp);main={i:'Third Party Only'+(lab?' – '+lab:''),r:'',p:tp,b:1,g:gross};if(!gross)W.push('TPO premium = KES '+f(tp));
-  if(c.pt&&px)P('Passenger legal liability',f(c.pt)+' per passenger',c.pt*px,0,c.pt+' × '+px);
+  if([LINKSHIELD PROTECTED] c.pt &&px)P('Passenger legal liability',f([LINKSHIELD PROTECTED] c.pt )+' per passenger',[LINKSHIELD PROTECTED] c.pt *px,0,[LINKSHIELD PROTECTED] c.pt +' × '+px);
   if(c.fp)P('Passenger legal liability','flat',c.fp,0,'flat '+c.fp);
   if(age>15&&c.k=='psv')F.push('PSV above 15 years quoted on TPO: the guide\'s last page states a 15-year age limit, but TPO is quoted without an age limit. Confirm with Underwriting.')}
  if($('cmz').checked){const n=Math.max(0,isNaN(parseInt($('ppl').value))?1:parseInt($('ppl').value)),b=c.k=='priv'?12000:c.n.startsWith('Motorcycle')?5000:20000,mo=+$('cmp').value||12,pc=({1:30,2:40,3:45,4:50,5:65,6:70})[mo]||100,pl=pc<100?' – '+mo+(mo==1?' month':' months')+' @ '+pc+'%':' – 12 months',rt=pc<100?pc.toFixed(3)+'%':'';
@@ -229,7 +229,7 @@ function calc(){const c=C[$('cls').value];if(!c)return{er:['Select a class of in
  if(dec){rem.push('<span style="color:#d00000;font-weight:700">'+decl+'</span>');F.push('Probox / Sienta / Succeed: mandatory declaration of use on both comprehensive and TPO (on instruction; the form wording is not in the guide).')}
  if(comp&&age>15&&(c.k=='priv'||c.k=='com')){rem.push('<span style="color:#d00000;font-weight:700">Vehicle above 15 years: requires authorization from Underwriter</span>');F.push('Vehicle above 15 years (private/commercial): requires authorization from the Underwriter before cover.')}
  if(c.nopll)for(let i=rem.length;i--;)if(rem[i].startsWith('Passenger liability'))rem.splice(i,1);
- if(c.ag)F.push(c.g=='X'?'Excess, limits and remarks: PSV "Taxi and other PSV" terms applied because the guide gives none for this class: confirm.':'Excess, limits and remarks: Motor Commercial terms applied because the guide gives none for this class (TPPD excess KES 20,000 assumed): confirm.');
+ if([LINKSHIELD PROTECTED] c.ag )F.push(c.g=='X'?'Excess, limits and remarks: PSV "Taxi and other PSV" terms applied because the guide gives none for this class: confirm.':'Excess, limits and remarks: Motor Commercial terms applied because the guide gives none for this class (TPPD excess KES 20,000 assumed): confirm.');
  if(bus)F.push('Bus excess: theft with anti-theft device minimum KES 10,000 is as printed; likely a typo for 50,000 (p12).');
  if(ov)F.push((c.k=='priv'?'Private':'Commercial (15–20 years, on instruction: private above-15-year rates applied)')+' vehicle above 15 years: 7%, min KES 37,500, PVT 0.45% min 2,500, no EP. Approved-valuer mechanical valuation and Underwriting approval required before cover.'+(c.k=='com'?' The guide also requires referral with a satisfactory mechanical report.':''));
  if(comp&&c.k=='priv'&&c.cb.length==1&&0)0;
@@ -252,7 +252,7 @@ window.addEventListener('beforeprint',()=>fitRem());window.addEventListener('res
 const SK=['reg','mk','yom','cls','cq','cov','tx','si','cat','pax','plan','cmp','ppl'],CK=['pvt','ep','tep','lou','cmz','trl','pbx'];
 const BLANK=()=>({tx:'Yellow line',reg:'',mk:'',yom:'',cls:'',cq:'',cov:'C',si:'',cat:'0',pax:'',plan:'2',cmp:'12',ppl:'1',pvt:false,ep:false,tep:false,lou:false,cmz:false,trl:false,pbx:false});
 let V=[BLANK()],cur=0,MULTI=false;
-const isBlank=o=>!o.cls&&!o.reg&&!o.mk&&!o.yom&&!o.si&&!o.pax;
+const isBlank=o=>!o.cls&&!o.reg&&![LINKSHIELD PROTECTED] o.mk &&!o.yom&&![LINKSHIELD PROTECTED] o.si &&!o.pax;
 function snap(){const o={};SK.forEach(k=>o[k]=$(k).value);CK.forEach(k=>o[k]=$(k).checked);return o}
 function setSnap(o){const st=(i,v)=>{const e=$(i);if(e.value!==String(v))e.value=v};
  st('cls',o.cls);st('cq',o.cq);st('cov',o.cov);ui();SK.forEach(k=>{if(k!='cls'&&k!='cq'&&k!='cov')st(k,o[k])});CK.forEach(k=>$(k).checked=!!o[k]);ui()}
@@ -263,26 +263,26 @@ $('rib').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)r
  if(b.dataset.i!=null)cur=+b.dataset.i;else if(b.dataset.a=='add'){V.push(BLANK());cur=V.length-1}else if(b.dataset.a=='copy'){V.push({...V[cur],reg:'',mk:'',yom:''});cur=V.length-1}else if(b.dataset.a=='del'&&V.length>1){V.splice(cur,1);cur=Math.max(0,cur-1)}
  setSnap(V[cur]);render()});
 function calcAll(){V[cur]=snap();MULTI=V.length>1;
- if(V.length==1){const q=calc();q.idx=0;return q.er?{er:q.er}:{list:[q],gtot:q.gt}}
+ if(V.length==1){const q=calc();q.idx=0;return [LINKSHIELD PROTECTED] q.er?{er:q.er}:{list:[q],gtot:q.gt} }
  const out=[],er=[];
- V.forEach((v,i)=>{setSnap(v);const q=calc();if(q.er){if(!isBlank(v))q.er.forEach(m=>er.push('Vehicle '+(i+1)+': '+m))}else{q.idx=i;out.push(q)}});
+ V.forEach((v,i)=>{setSnap(v);const q=calc();if([LINKSHIELD PROTECTED] q.er ){if(!isBlank(v))q.er.forEach(m=>er.push('Vehicle '+(i+1)+': '+m))}else{q.idx=i;out.push(q)}});
  setSnap(V[cur]);
  if(er.length)return{er};if(!out.length)return{er:['Select a class of insurance']};
- return{list:out,gtot:r1(out.reduce((a,q)=>a+q.gt,0))}}
+ return{list:out,gtot:r1(out.reduce((a,q)=>a+[LINKSHIELD PROTECTED] q.gt ,0))}}
 function render(){ui();V[cur]=snap();tabs();const R=calcAll(),w=$('warn'),o=$('out');
  Q=R;
  if(R.er){w.innerHTML='<b>Complete the following:</b><ul style="margin:6px 0 0">'+R.er.map(x=>'<li>'+x+'</li>').join('')+'</ul>';w.hidden=false;o.hidden=true;return}
  w.hidden=true;o.hidden=false;$('dt').textContent=dstr();['sn','prop','loc','occ','intm'].forEach(i=>$('h_'+i).textContent=$(i).value);
  let html='';
- R.list.forEach(q=>{const n=q.rows.length;html+=q.rows.map((r,k)=>{const bb=(R.list.length>1&&k==n-1)?'border-bottom:2px solid #000;':'',st=(r.tot||bb)?' style="'+(r.tot?'border-top:3px double #000;':'')+bb+'"':'',cl=[r.u&&'u',r.it&&'it',r.red&&'red'].filter(Boolean).join(' ');
-  return `<tr><td${k?'':' class="yl"'}${bb?` style="${bb}"`:''}>${k?'':q.cls}</td><td class="${cl}"${st}>${(r.b||r.ib)&&!r.u?'<b>'+(r.i||'')+'</b>':(r.i||'&nbsp;')}</td><td${r.sr?' class="r"':''}${st}>${r.b&&r.s?'<b>'+r.s+'</b>':r.s||''}</td><td class="r"${st}>${r.r||''}</td><td class="r"${st}>${r.p==null?'':r.b?'<b>'+f(r.p)+'</b>':f(r.p)}</td>${k?'':`<td class="rm" rowspan="${n}"${R.list.length>1?' style="border-bottom:2px solid #000"':''}><div>${q.rem.map(x=>x[0]=='~'?'<p style="padding-left:26px">'+x.slice(1)+'</p>':'<p>'+x+'</p>').join('')}</div></td>`}</tr>`}).join('')});
+ R.list.forEach(q=>{const n=q.rows.length;html+=q.rows.map((r,k)=>{const bb=(R.list.length>1&&k==n-1)?'border-bottom:2px solid #000;':'',st=(r.tot||bb)?' style="'+(r.tot?'border-top:3px double #000;':'')+bb+'"':'',cl=[r.u&&'u',[LINKSHIELD PROTECTED] r.it &&'it',r.red&&'red'].filter(Boolean).join(' ');
+  return `<tr><td${k?'':' class="yl"'}${bb?` style="${bb}"`:''}>${k?'':q.cls}</td><td class="${cl}"${st}>${(r.b||r.ib)&&!r.u?'<b>'+(r.i||'')+'</b>':(r.i||'&nbsp;')}</td><td${[LINKSHIELD PROTECTED] r.sr ?' class="r"':''}${st}>${r.b&&r.s?'<b>'+r.s+'</b>':r.s||''}</td><td class="r"${st}>${r.r||''}</td><td class="r"${st}>${r.p==null?'':r.b?'<b>'+f(r.p)+'</b>':f(r.p)}</td>${k?'':`<td class="rm" rowspan="${n}"${R.list.length>1?' style="border-bottom:2px solid #000"':''}><div>${q.rem.map(x=>x[0]=='~'?'<p style="padding-left:26px">'+x.slice(1)+'</p>':'<p>'+x+'</p>').join('')}</div></td>`}</tr>`}).join('')});
  if(R.list.length>1){const t=' style="border-top:3px double #000"';html+=`<tr><td></td><td></td><td class="r"${t}><b>GRAND TOTAL</b></td><td${t}></td><td class="r"${t}><b>${f(R.gtot)}</b></td><td></td></tr>`}
  $('tb').innerHTML=html;fitRem();
  $('disc').innerHTML='<div class="dh">DISCLAIMER</div>'+DL.map(x=>'<div class="dl">'+x+'</div>').join('');$('pb').textContent=$('by').value;$('ab').textContent=$('apb').value;
  const multi=R.list.length>1,hv=q=>multi?'<li><b>Vehicle '+(q.idx+1)+': '+(V[q.idx].reg||'no registration').toUpperCase()+' ('+q.cls+')</b></li>':'',seen=new Set();
  $('wk').innerHTML=R.list.map(q=>hv(q)+q.W.map(x=>'<li>'+x+'</li>').join('')).join('');
  $('ob').innerHTML=R.list.map(q=>hv(q)+q.ob.filter(x=>!seen.has(x)&&seen.add(x)).map(x=>'<li>'+x+'</li>').join('')).join('');
- $('rj').innerHTML=R.list.map(q=>hv(q)+`<li>Class: ${q.c.n}</li><li>Rate: ${q.comp?q.rb:'flat / schedule TPO premium'}${q.comp?'; minimum premium KES '+f(q.minp):''}</li><li>Rating guide page: ${q.c.pg}</li>`).join('')}
+ $('rj').innerHTML=R.list.map(q=>hv(q)+`<li>Class: ${q.c.n}</li><li>Rate: ${q.comp?q.rb:'flat / schedule TPO premium'}${q.comp?'; minimum premium KES '+f(q.minp):''}</li><li>Rating guide page: ${[LINKSHIELD PROTECTED] q.c.pg }</li>`).join('')}
 const DL=['**WE RESERVE THE RIGHT TO REVIEW THE QUOTATION OR CANCEL THE RISK SHOULD FACTS EMERGE TO THE CONTRARY','**OCCUPATION DEFINED IN THIS QUOTATION IS CERTIFIED AS THE TRUE OCCUPATION, PLEASE ADVISE IF OTHERWISE FOR ACCURATE PREMIUM','**THIS QUOTATION IS AN INVITATION TO OFFER AND DOES NOT CONSTITUTE AN OFFER','**QUOTATION VALID FOR 30 DAYS','**FINAL TERMS WILL BE AS PER OUR STANDARD POLICY TERMS AND CONDITIONS'];
 function fname(){const r=V.map(v=>(v.reg||'').toUpperCase().replace(/[^A-Z0-9]/g,'')).filter(Boolean).join('-');return(r||'AMACO-QUOTE')+'-1.pdf'}
 function buildPdf(sc){
@@ -293,7 +293,7 @@ function buildPdf(sc){
  d.setFont('times','normal');const hbEnd=Math.max(y,5+lh)+1;d.setDrawColor(0);d.setLineWidth(.2);d.rect(10,4,277,hbEnd-4);
  const fit=(t,w,bold,base)=>{d.setFont('times',bold?'bold':'normal');let f=base;d.setFontSize(f);while(f>5.5&&d.getTextWidth(t)>w-3){f-=.25;d.setFontSize(f)}d.setFont('times','normal');return f};
  const rowsAll=[],starts={},body=[],lastRows=new Set(),multi=QS.length>1;
- QS.forEach(q=>{const n=q.rows.length;starts[rowsAll.length]=q;q.rows.forEach((r,k)=>{rowsAll.push(r);const bs=r.b||r.u?{fontStyle:'bold'}:{},rd=r.red?{textColor:[224,0,0],fontStyle:'italic'}:{},c=[{content:r.i||'',styles:{...bs,...rd,...(r.ib?{fontStyle:'bold'}:{}),fontSize:fit(r.i||'',66,!!(bs.fontStyle||r.ib),8.5*sc)}},{content:r.s||'',styles:{...bs,halign:r.sr?'right':'left'}},{content:r.r||'',styles:{halign:'right'}},{content:r.p==null?'':f(r.p),styles:{...bs,halign:'right'}}];
+ QS.forEach(q=>{const n=q.rows.length;starts[rowsAll.length]=q;q.rows.forEach((r,k)=>{rowsAll.push(r);const bs=r.b||r.u?{fontStyle:'bold'}:{},rd=r.red?{textColor:[224,0,0],fontStyle:'italic'}:{},c=[{content:r.i||'',styles:{...bs,...rd,...(r.ib?{fontStyle:'bold'}:{}),fontSize:fit(r.i||'',66,!!(bs.fontStyle||r.ib),8.5*sc)}},{content:r.s||'',styles:{...bs,halign:[LINKSHIELD PROTECTED] r.sr?'right':'left'} },{content:r.r||'',styles:{halign:'right'}},{content:r.p==null?'':f(r.p),styles:{...bs,halign:'right'}}];
   c.unshift({content:k?'':q.cls,styles:k?{}:{fillColor:[255,255,0],fontStyle:'bold',fontSize:fit(q.cls,62,true,8.5*sc)}});if(!k){c.push({content:q.rem.map(x=>x.replace(/<[^>]+>/g,'').replace(/^~/,'')).join('\n'),rowSpan:n,styles:{fontSize:6.5*sc,textColor:[255,255,255]}})}body.push(c)});lastRows.add(rowsAll.length-1)});
  if(QS.length>1){rowsAll.push({tot:1});body.push(['','',{content:'GRAND TOTAL',styles:{fontStyle:'bold',halign:'right'}},'',{content:f(Q.gtot),styles:{fontStyle:'bold',halign:'right'}},''])}
  const pd=.5*sc;
@@ -321,3 +321,4 @@ $('plan').innerHTML=PL.map((p,i)=>`<option value="${i}"${i==2?' selected':''}>${
 document.addEventListener('input',render);document.addEventListener('change',render);
 $('hlogo').src=$('logo').src;if($('bi'))$('bi').onclick=()=>{const w=$('intWrap');w.hidden=!w.hidden;$('bi').textContent=w.hidden?'Show internal notes':'Hide internal notes'};$('bp').onclick=pdf;$('br').onclick=()=>window.print();render();
 </script></body></html>
+
